@@ -3,8 +3,6 @@ package com.marsmission;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.marsmission.Instruction.*;
-
 public class TransmissionParser {
 
     public Transmission parse(String input) {
@@ -32,17 +30,7 @@ public class TransmissionParser {
     private List<Instruction> parseInstruction(String[] lines, int i) {
         List<Instruction> instructions = new ArrayList<>();
         if (i + 1 < lines.length) {
-            switch (lines[i + 1]) {
-                case "L":
-                    instructions.add(TURN_LEFT);
-                    break;
-                case "R":
-                    instructions.add(TURN_RIGHT);
-                    break;
-                case "M":
-                    instructions.add(MOVE);
-                    break;
-            }
+            instructions.add(Instruction.fromText(lines[i + 1]));
         }
         return instructions;
     }
