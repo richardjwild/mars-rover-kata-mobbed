@@ -29,12 +29,10 @@ public class TransmissionParser {
 
     private List<Instruction> parseInstruction(String[] lines, int roverInputLine) {
         List<Instruction> instructions = new ArrayList<>();
-        if (roverInputLine + 1 < lines.length) {
-            String instructionsString = lines[roverInputLine + 1];
-            char[] instructionsChar=instructionsString.toCharArray();
-            for(char instruction: instructionsChar){
-                instructions.add(Instruction.fromText(instruction));
-            }
+        if (roverInputLine + 1 >= lines.length)
+            return instructions;
+        for (char instruction : lines[roverInputLine + 1].toCharArray()) {
+            instructions.add(Instruction.fromText(instruction));
         }
         return instructions;
     }
