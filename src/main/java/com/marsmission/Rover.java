@@ -12,6 +12,27 @@ public class Rover {
     }
 
     public MarsVector execute() {
-        return new MarsVector(initialVector.coordinate, Bearing.EAST);
+        for (Instruction instruction : instructions) {
+            switch (instruction) {
+                case TURN_RIGHT:
+                    return new MarsVector(initialVector.coordinate, turnRight());
+                default:
+                    return null;
+            }
+        }
+        return null;
+    }
+
+    private Bearing turnRight() {
+        switch (initialVector.bearing) {
+            case NORTH:
+                return Bearing.EAST;
+            case EAST:
+                return Bearing.SOUTH;
+            case SOUTH:
+                return Bearing.WEST;
+            default:
+                return Bearing.NORTH;
+        }
     }
 }
