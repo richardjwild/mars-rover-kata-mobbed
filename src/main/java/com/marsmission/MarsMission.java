@@ -6,12 +6,15 @@ public class MarsMission {
 
         String positions = "";
         for (int i = 1; i < tokens.length; i += 2) {
-            if (hasInstructions(tokens, i))
-                positions += getBearingAndPosition(tokens, i) + "\n";
-            else
-                positions += tokens[i] + "\n";
+            positions += executeRoverInstructions(tokens, i);
         }
         return positions.trim();
+    }
+
+    private String executeRoverInstructions(String[] tokens, int roverInputLine) {
+        if (hasInstructions(tokens, roverInputLine))
+            return getBearingAndPosition(tokens, roverInputLine) + "\n";
+        return tokens[roverInputLine] + "\n";
     }
 
     private boolean hasInstructions(String[] tokens, int roverInputLine) {
