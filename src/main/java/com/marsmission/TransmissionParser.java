@@ -1,5 +1,11 @@
 package com.marsmission;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.marsmission.Instruction.TURN_LEFT;
+import static com.marsmission.Instruction.TURN_RIGHT;
+
 public class TransmissionParser {
 
     public Transmission parse(String input) {
@@ -8,7 +14,19 @@ public class TransmissionParser {
 
         for (int i = 1; i < lines.length; i += 2) {
             Coordinate coordinate = getCoordinates(lines, i);
-            transmission.roverDefinitions.add(new RoverDefinition(coordinate));
+            List<Instruction> instructions = new ArrayList<>();
+            if (i + 1 < lines.length) {
+                switch (lines[i + 1]) {
+                    case "L":
+                        instructions.add(TURN_LEFT);
+                        break;
+                    case "R":
+                        instructions.add(TURN_RIGHT);
+                        break;
+                }
+            }
+            transmission.roverDefinitions.add(
+                new RoverDefinition(coordinate, instructions));
         }
 
         return transmission;

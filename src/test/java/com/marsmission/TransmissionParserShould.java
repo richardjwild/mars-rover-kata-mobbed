@@ -33,4 +33,17 @@ public class TransmissionParserShould {
         assertEquals(Arrays.asList(TURN_LEFT),
             transmission.getInstructions(0));
     }
+
+    @Test public void
+    parse_instructions_for_two_rovers() {
+        TransmissionParser parser = new TransmissionParser();
+
+        Transmission transmission = parser.parse(
+            "5 5\n1 1 N\nL\n2 2 N\nR");
+
+        assertEquals(Arrays.asList(TURN_LEFT),
+            transmission.getInstructions(0));
+        assertEquals(Arrays.asList(Instruction.TURN_RIGHT),
+            transmission.getInstructions(1));
+    }
 }

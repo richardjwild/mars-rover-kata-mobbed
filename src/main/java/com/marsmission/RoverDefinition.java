@@ -1,9 +1,13 @@
 package com.marsmission;
 
-public class RoverDefinition {
-    public Coordinate coordinate;
+import java.util.List;
 
-    public RoverDefinition(Coordinate coordinate) {
+public class RoverDefinition {
+    public final Coordinate coordinate;
+    public final List<Instruction> instructions;
+
+    public RoverDefinition(Coordinate coordinate, List<Instruction> instructions) {
         this.coordinate = coordinate;
+        this.instructions = instructions;
     }
 }
