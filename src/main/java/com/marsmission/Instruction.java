@@ -3,11 +3,11 @@ package com.marsmission;
 public enum Instruction {
     TURN_RIGHT, MOVE, TURN_LEFT;
 
-    public static Instruction fromText(String text) {
+    public static Instruction fromText(char text) {
         switch (text) {
-            case "L":
+            case 'L':
                 return TURN_LEFT;
-            case "R":
+            case 'R':
                 return TURN_RIGHT;
             default:
                 return MOVE;

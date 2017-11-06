@@ -35,4 +35,13 @@ public class TransmissionParserShould {
         assertEquals(asList(MOVE),
             transmission.getInstructions(2));
     }
+
+    @Test public void
+    parse_multiple_instructions_for_one_rover() {
+        Transmission transmission = parser.parse(
+            "5 5\n1 1 N\nLL");
+
+        assertEquals(asList(TURN_LEFT, TURN_LEFT),
+            transmission.getInstructions(0));
+    }
 }

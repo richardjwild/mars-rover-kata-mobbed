@@ -27,10 +27,14 @@ public class TransmissionParser {
         return new Coordinate(x, y);
     }
 
-    private List<Instruction> parseInstruction(String[] lines, int i) {
+    private List<Instruction> parseInstruction(String[] lines, int roverInputLine) {
         List<Instruction> instructions = new ArrayList<>();
-        if (i + 1 < lines.length) {
-            instructions.add(Instruction.fromText(lines[i + 1]));
+        if (roverInputLine + 1 < lines.length) {
+            String instructionsString = lines[roverInputLine + 1];
+            char[] instructionsChar=instructionsString.toCharArray();
+            for(char instruction: instructionsChar){
+                instructions.add(Instruction.fromText(instruction));
+            }
         }
         return instructions;
     }
