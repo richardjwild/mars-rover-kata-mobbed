@@ -53,7 +53,9 @@ public class TransmissionParserShould {
     @Test
     @Parameters({
         "5 5\n1 1 N\n | NORTH",
-        "5 5\n1 1 E\n | EAST"
+        "5 5\n1 1 E\n | EAST",
+        "5 5\n1 1 W\n | WEST",
+        "5 5\n1 1 S\n | SOUTH"
     })
     public void
     parse_bearing_for_one_rover(String input, Bearing expectedBearing) {
