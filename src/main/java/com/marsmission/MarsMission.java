@@ -15,23 +15,23 @@ public class MarsMission {
         return positions.trim();
     }
 
-    private String executeRoverInstructions(String[] tokens, int roverInputLine) {
-        if (hasInstructions(tokens, roverInputLine))
-            return getBearingAndPosition(tokens, roverInputLine) + "\n";
-        return tokens[roverInputLine] + "\n";
+    private String executeRoverInstructions(String[] lines, int roverInputLine) {
+        if (hasInstructions(lines, roverInputLine))
+            return getBearingAndPosition(lines, roverInputLine) + "\n";
+        return lines[roverInputLine] + "\n";
     }
 
-    private boolean hasInstructions(String[] tokens, int roverInputLine) {
-        return tokens.length > roverInputLine + 1 && !tokens[roverInputLine + 1].isEmpty();
+    private boolean hasInstructions(String[] lines, int roverInputLine) {
+        return lines.length > roverInputLine + 1 && !lines[roverInputLine + 1].isEmpty();
     }
 
-    private String getBearingAndPosition(String[] tokens, int roverInputLine) {
-        return parser.getCoordinates(tokens, roverInputLine) + " "
-            + turn(tokens[roverInputLine + 1]);
+    private String getBearingAndPosition(String[] lines, int roverInputLine) {
+        return parser.getCoordinates(lines, roverInputLine) + " "
+            + turn(lines[roverInputLine + 1]);
     }
 
-    private String turn(String token) {
-        if (token.equals("L"))
+    private String turn(String line) {
+        if (line.equals("L"))
             return "W";
         return "E";
     }
