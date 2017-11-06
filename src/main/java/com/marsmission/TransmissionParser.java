@@ -3,6 +3,7 @@ package com.marsmission;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.marsmission.Instruction.MOVE;
 import static com.marsmission.Instruction.TURN_LEFT;
 import static com.marsmission.Instruction.TURN_RIGHT;
 
@@ -22,6 +23,9 @@ public class TransmissionParser {
                         break;
                     case "R":
                         instructions.add(TURN_RIGHT);
+                        break;
+                    case "M":
+                        instructions.add(MOVE);
                         break;
                 }
             }
