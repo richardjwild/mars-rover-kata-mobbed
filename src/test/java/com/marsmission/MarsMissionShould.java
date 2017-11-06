@@ -39,4 +39,18 @@ public class MarsMissionShould {
 
         assertEquals(expectedRoversPosition, actualRoverPosition);
     }
+
+    @Test
+    @Parameters({
+        "5 5\n1 1 N\nL | 1 1 W",
+    })
+    public void
+    tell_single_rover_to_turn(
+        String transmission, String expectedRoversPosition) {
+        MarsMission mission = new MarsMission();
+
+        String actualRoverPosition = mission.execute(transmission);
+
+        assertEquals(expectedRoversPosition, actualRoverPosition);
+    }
 }
