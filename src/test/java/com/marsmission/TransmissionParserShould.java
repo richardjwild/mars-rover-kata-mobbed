@@ -2,19 +2,18 @@ package com.marsmission;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static com.marsmission.Instruction.TURN_LEFT;
+import static com.marsmission.Instruction.*;
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 public class TransmissionParserShould {
 
+    private final TransmissionParser parser = new TransmissionParser();
+
     @Test public void
     parse_coordinates_for_multiple_rovers() {
-        TransmissionParser parser = new TransmissionParser();
-
         Transmission transmission =
-            parser.parse("5 5\n1 1 N\n\n2 2 N\n\n3 3 N");
+            parser.parse("5 5\n1 1 N\n\n2 2 N\n\n3 3 N\n");
 
         assertEquals(new Coordinate(1, 1),
             transmission.getCoordinate(0));
@@ -26,16 +25,14 @@ public class TransmissionParserShould {
 
     @Test public void
     parse_instructions_for_multiple_rovers() {
-        TransmissionParser parser = new TransmissionParser();
-
         Transmission transmission = parser.parse(
             "5 5\n1 1 N\nL\n2 2 N\nR\n3 3 N\nM");
 
-        assertEquals(Arrays.asList(TURN_LEFT),
+        assertEquals(asList(TURN_LEFT),
             transmission.getInstructions(0));
-        assertEquals(Arrays.asList(Instruction.TURN_RIGHT),
+        assertEquals(asList(TURN_RIGHT),
             transmission.getInstructions(1));
-        assertEquals(Arrays.asList(Instruction.MOVE),
+        assertEquals(asList(MOVE),
             transmission.getInstructions(2));
     }
 }
