@@ -31,8 +31,8 @@ public class MarsMission {
             + turn(lines[roverInputLine + 1]);
     }
 
-    private String turn(String line) {
-        if (line.equals("L"))
+    private String turn(String instruction) {
+        if (instruction.equals("L"))
             return "W";
         return "E";
     }
