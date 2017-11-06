@@ -5,6 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static com.marsmission.Bearing.EAST;
 import static com.marsmission.Bearing.NORTH;
 import static com.marsmission.Instruction.*;
 import static java.util.Arrays.asList;
@@ -62,5 +63,14 @@ public class TransmissionParserShould {
         Transmission transmission = parser.parse(input);
 
         assertEquals(expectedBearing, transmission.getBearing(0));
+    }
+
+    @Test
+    public void
+    parse_bearing_for_multipl_rovers() {
+        Transmission transmission = parser.parse("5 5\n1 1 N\n\n2 2 E\n");
+
+        assertEquals(NORTH, transmission.getBearing(0));
+        assertEquals(EAST, transmission.getBearing(1));
     }
 }
