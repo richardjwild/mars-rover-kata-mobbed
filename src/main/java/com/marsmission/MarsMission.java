@@ -3,10 +3,11 @@ package com.marsmission;
 public class MarsMission {
 
     private final TransmissionParser parser = new TransmissionParser();
+    private Transmission transmission;
 
     public String execute(String input) {
         String[] lines = input.split("\n", -1);
-        Transmission transmission = parser.parse(input);
+        transmission = parser.parse(input);
 
         String positions = "";
         for (int i = 1; i < lines.length; i += 2) {
@@ -26,7 +27,7 @@ public class MarsMission {
     }
 
     private String getBearingAndPosition(String[] lines, int roverInputLine) {
-        return parser.getCoordinates(lines, roverInputLine) + " "
+        return transmission.getCoordinate((roverInputLine - 1) / 2) + " "
             + turn(lines[roverInputLine + 1]);
     }
 

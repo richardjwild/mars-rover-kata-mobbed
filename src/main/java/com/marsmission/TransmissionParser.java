@@ -14,7 +14,7 @@ public class TransmissionParser {
         return transmission;
     }
 
-    public Coordinate getCoordinates(String[] lines, int roverInputLine) {
+    private Coordinate getCoordinates(String[] lines, int roverInputLine) {
         String coordinates = lines[roverInputLine].substring(0, 4);
         String[] rawCoordinates = coordinates.split(" ");
         int x = Integer.parseInt(rawCoordinates[0]);
