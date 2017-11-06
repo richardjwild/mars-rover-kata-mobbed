@@ -43,6 +43,7 @@ public class MarsMissionShould {
     @Test
     @Parameters({
         "5 5\n1 1 N\nL | 1 1 W",
+        "5 5\n1 1 N\nR | 1 1 E"
     })
     public void
     tell_single_rover_to_turn(
