@@ -16,12 +16,15 @@ public class MarsMission {
         for (int i = 0; i < transmission.roverCount(); i++) {
             positions += String.format("%s %s\n",
                 transmission.getCoordinate(i),
-                turn(transmission.getInstructions(i), transmission.getBearing(i)));
+                executeInstructions(transmission, i));
         }
         return positions.trim();
     }
 
-    private String turn(List<Instruction> instructions, Bearing bearing) {
+    private String executeInstructions(Transmission transmission, int rover) {
+        List<Instruction> instructions = transmission.getInstructions(rover);
+        Bearing bearing = transmission.getBearing(rover);
+
         if (instructions.isEmpty())
             return bearing.toString();
         if (instructions.get(0).equals(TURN_LEFT))
