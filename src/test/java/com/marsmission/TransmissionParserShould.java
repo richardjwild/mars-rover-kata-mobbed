@@ -1,12 +1,16 @@
 package com.marsmission;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static com.marsmission.Bearing.*;
+import static com.marsmission.Bearing.NORTH;
 import static com.marsmission.Instruction.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
+@RunWith(JUnitParamsRunner.class)
 public class TransmissionParserShould {
 
     private final TransmissionParser parser = new TransmissionParser();
@@ -46,11 +50,14 @@ public class TransmissionParserShould {
             transmission.getInstructions(0));
     }
 
-    @Test public void
-    parse_bearing_for_one_rover() {
-        Transmission transmission = parser.parse(
-            "5 5\n1 1 N\n");
+    @Test
+    @Parameters({
+        "5 5\n1 1 N\n | NORTH"
+    })
+    public void
+    parse_bearing_for_one_rover(String input, Bearing expectedBearing) {
+        Transmission transmission = parser.parse(input);
 
-        assertEquals(NORTH, transmission.getBearing(0));
+        assertEquals(expectedBearing, transmission.getBearing(0));
     }
 }
