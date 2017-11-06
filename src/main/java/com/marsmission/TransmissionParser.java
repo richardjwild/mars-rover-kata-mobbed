@@ -7,7 +7,7 @@ public class TransmissionParser {
 
     public Transmission parse(String input) {
         Transmission transmission = new Transmission();
-        String[] lines = input.split("\n", -1);
+        String[] lines = input.split("\n");
 
         for (int i = 1; i < lines.length; i += 2) {
             Coordinate coordinate = parseCordinates(lines, i);
