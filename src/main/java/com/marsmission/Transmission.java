@@ -6,7 +6,6 @@ import java.util.List;
 public class Transmission {
     public List<RoverDefinition> roverDefinitions = new ArrayList<>();
 
-
     Coordinate getCoordinate(int rover) {
         return roverDefinitions.get(rover).coordinate;
     }

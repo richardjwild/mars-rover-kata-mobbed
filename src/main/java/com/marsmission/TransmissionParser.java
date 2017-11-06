@@ -6,12 +6,14 @@ public class TransmissionParser {
         Transmission transmission = new Transmission();
         String[] lines = input.split("\n", -1);
 
-        String coordinates = lines[1].substring(0, 4);
-        String[] rawCoordinates = coordinates.split(" ");
-        int x = Integer.parseInt(rawCoordinates[0]);
-        int y = Integer.parseInt(rawCoordinates[1]);
+        Coordinate coordinate = getCoordinates(lines, 1);
+        transmission.roverDefinitions.add(new RoverDefinition(coordinate));
 
-        transmission.roverDefinitions.add(new RoverDefinition(new Coordinate(x,y)));
+        if (lines.length > 3) {
+            Coordinate secondRoverCoordinates = getCoordinates(lines, 3);
+            transmission.roverDefinitions.add(
+                new RoverDefinition(secondRoverCoordinates));
+        }
 
         return transmission;
     }
