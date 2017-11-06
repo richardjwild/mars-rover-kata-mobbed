@@ -15,6 +15,11 @@ public class TransmissionParser {
                 new RoverDefinition(secondRoverCoordinates));
         }
 
+        if (lines.length > 5) {
+            Coordinate secondRoverCoordinates = getCoordinates(lines, 5);
+            transmission.roverDefinitions.add(
+                new RoverDefinition(secondRoverCoordinates));
+        }
         return transmission;
     }
 
