@@ -2,8 +2,8 @@ package com.marsmission;
 
 public class MarsMission {
     public String execute(String transmission) {
-        String[] tokens = transmission.split("\n");
-        if (tokens.length >= 3 && !tokens[2].isEmpty()) {
+        String[] tokens = transmission.split("\n" );
+        if (tokens.length > 2 && !tokens[2].isEmpty()) {
             return "1 1 W";
         }
         String positions = "";
