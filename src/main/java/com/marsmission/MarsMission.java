@@ -1,40 +1,29 @@
 package com.marsmission;
 
-public class MarsMission {
+import java.util.List;
 
+public class MarsMission {
     private final TransmissionParser parser = new TransmissionParser();
-    private Transmission transmission;
 
     public String execute(String input) {
-        String[] lines = input.split("\n", -1);
-        transmission = parser.parse(input);
+        Transmission transmission = parser.parse(input);
 
         String positions = "";
-        for (int i = 1; i < lines.length; i += 2) {
-            positions += executeRoverInstructions(lines, i);
+        for (int i = 0; i < transmission.roverCount(); i++) {
+            positions += "" +
+                transmission.getCoordinate(i) +
+                " " +
+                turn(transmission.getInstructions(i), transmission.getBearing(i)) +
+                "\n";
         }
         return positions.trim();
     }
 
-    private String executeRoverInstructions(String[] lines, int roverInputLine) {
-        if (hasInstructions(lines, roverInputLine))
-            return getBearingAndPosition(lines, roverInputLine) + "\n";
-        return lines[roverInputLine] + "\n";
-    }
-
-    private boolean hasInstructions(String[] lines, int roverInputLine) {
-        return lines.length > roverInputLine + 1 && !lines[roverInputLine + 1].isEmpty();
-    }
-
-    private String getBearingAndPosition(String[] lines, int roverInputLine) {
-        return transmission.getCoordinate((roverInputLine - 1) / 2) + " "
-            + turn(lines[roverInputLine + 1]);
-    }
-
-    private String turn(String instruction) {
-        if (instruction.equals("L"))
+    private String turn(List<Instruction> instructions, Bearing bearing) {
+        if (instructions.isEmpty())
+            return bearing.toString();
+        if (instructions.get(0).equals(Instruction.TURN_LEFT))
             return "W";
         return "E";
     }
-
 }

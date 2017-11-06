@@ -10,4 +10,8 @@ public enum Bearing {
             .filter(value -> value.name().charAt(0) == c)
             .findAny().get();
     }
+
+    @Override public String toString() {
+        return name().substring(0, 1);
+    }
 }

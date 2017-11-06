@@ -21,4 +21,8 @@ public class Transmission {
     public void addRover(RoverDefinition roverDefinition) {
         roverDefinitions.add(roverDefinition);
     }
+
+    public int roverCount() {
+        return roverDefinitions.size();
+    }
 }
