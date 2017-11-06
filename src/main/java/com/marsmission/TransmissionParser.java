@@ -13,8 +13,8 @@ public class TransmissionParser {
             Coordinate coordinate = parseCordinates(lines, i);
             List<Instruction> instructions = parseInstruction(lines, i);
             Bearing bearing = Bearing.fromText(lines[i].charAt(4));
-            transmission.roverDefinitions.add(
-                new RoverDefinition(coordinate, instructions,bearing));
+            transmission.addRover(
+                new RoverDefinition(coordinate, instructions, bearing));
         }
 
         return transmission;
