@@ -1,12 +1,16 @@
 package com.marsmission;
 
 public class MarsMission {
-    public String execute(String transmission) {
-        String[] tokens = transmission.split("\n", -1);
+
+    private final TransmissionParser parser = new TransmissionParser();
+
+    public String execute(String input) {
+        String[] lines = input.split("\n", -1);
+        Transmission transmission = parser.parse(input);
 
         String positions = "";
-        for (int i = 1; i < tokens.length; i += 2) {
-            positions += executeRoverInstructions(tokens, i);
+        for (int i = 1; i < lines.length; i += 2) {
+            positions += executeRoverInstructions(lines, i);
         }
         return positions.trim();
     }
@@ -22,11 +26,8 @@ public class MarsMission {
     }
 
     private String getBearingAndPosition(String[] tokens, int roverInputLine) {
-        return getInitialCoordinates(tokens, roverInputLine) + turn(tokens[roverInputLine + 1]);
-    }
-
-    private String getInitialCoordinates(String[] tokens, int roverInputLine) {
-        return tokens[roverInputLine].substring(0, 4);
+        return parser.getCoordinates(tokens, roverInputLine) + " "
+            + turn(tokens[roverInputLine + 1]);
     }
 
     private String turn(String token) {
