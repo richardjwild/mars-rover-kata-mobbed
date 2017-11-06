@@ -2,6 +2,7 @@ package com.marsmission;
 
 import org.junit.Test;
 
+import static com.marsmission.Bearing.*;
 import static com.marsmission.Instruction.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
@@ -43,5 +44,13 @@ public class TransmissionParserShould {
 
         assertEquals(asList(TURN_LEFT, TURN_LEFT),
             transmission.getInstructions(0));
+    }
+
+    @Test public void
+    parse_bearing_for_one_rover() {
+        Transmission transmission = parser.parse(
+            "5 5\n1 1 N\n");
+
+        assertEquals(NORTH, transmission.getBearing(0));
     }
 }

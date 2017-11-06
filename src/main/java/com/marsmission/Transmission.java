@@ -3,6 +3,8 @@ package com.marsmission;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.marsmission.Bearing.NORTH;
+
 public class Transmission {
     public List<RoverDefinition> roverDefinitions = new ArrayList<>();
 
@@ -14,4 +16,7 @@ public class Transmission {
         return roverDefinitions.get(rover).instructions;
     }
 
+    public Bearing getBearing(int rover) {
+        return NORTH;
+    }
 }
