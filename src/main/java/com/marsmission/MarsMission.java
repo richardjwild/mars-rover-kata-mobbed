@@ -3,13 +3,10 @@ package com.marsmission;
 public class MarsMission {
     public String execute(String transmission) {
         String[] tokens = transmission.split("\n");
-        if (tokens.length <= 2) {
-            return tokens[1];
+        String positions = "";
+        for (int i = 1; i < tokens.length; i += 2) {
+            positions += tokens[i] + "\n";
         }
-        if (tokens.length <= 4) {
-            return tokens[1] + "\n" + tokens[3];
-        }
-        return tokens[1] + "\n" + tokens[3] + "\n" + tokens[5];
-
+        return positions.trim();
     }
 }
