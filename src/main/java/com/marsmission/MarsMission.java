@@ -21,9 +21,11 @@ public class MarsMission {
         return positions.trim();
     }
 
-    private String executeInstructions(Transmission transmission, int rover) {
-        List<Instruction> instructions = transmission.getInstructions(rover);
-        Bearing bearing = transmission.getBearing(rover);
+    private String executeInstructions(Transmission transmission, int roverId) {
+        List<Instruction> instructions = transmission.getInstructions(roverId);
+        Bearing bearing = transmission.getBearing(roverId);
+//        Rover rover = new Rover(transmission.getCoordinate(roverId), bearing, instructions);
+//        MarsVector finalVector = rover.execute();
 
         if (instructions.isEmpty())
             return bearing.toString();
