@@ -6,6 +6,10 @@ public class MarsMission {
         if (tokens.length <= 2) {
             return tokens[1];
         }
-        return tokens[1] + "\n" + tokens[3];
+        if (tokens.length <= 4) {
+            return tokens[1] + "\n" + tokens[3];
+        }
+        return tokens[1] + "\n" + tokens[3] + "\n" + tokens[5];
+
     }
 }
