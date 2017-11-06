@@ -17,6 +17,6 @@ public class Transmission {
     }
 
     public Bearing getBearing(int rover) {
-        return NORTH;
+        return roverDefinitions.get(rover).bearing;
     }
 }
