@@ -2,6 +2,8 @@ package com.marsmission;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static com.marsmission.Instruction.TURN_LEFT;
 import static org.junit.Assert.assertEquals;
 
@@ -28,6 +30,7 @@ public class TransmissionParserShould {
 
         Transmission transmission = parser.parse("5 5\n1 1 N\nL");
 
-        assertEquals(TURN_LEFT, transmission.getInstruction(0));
+        assertEquals(Arrays.asList(TURN_LEFT),
+            transmission.getInstructions(0));
     }
 }

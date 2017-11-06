@@ -1,6 +1,7 @@
 package com.marsmission;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.marsmission.Instruction.TURN_LEFT;
@@ -12,7 +13,7 @@ public class Transmission {
         return roverDefinitions.get(rover).coordinate;
     }
 
-    public Instruction getInstruction(int rover) {
-        return TURN_LEFT;
+    public List<Instruction> getInstructions(int rover) {
+        return Arrays.asList(TURN_LEFT);
     }
 }
