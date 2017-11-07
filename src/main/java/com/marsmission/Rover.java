@@ -30,8 +30,11 @@ public class Rover {
         switch (initialVector.bearing) {
             case NORTH:
                 return new Coordinate(coordinate.x, coordinate.y + 1);
+            case EAST:
+                return new Coordinate(coordinate.x + 1, coordinate.y);
+            default:
+                return new Coordinate(coordinate.x, coordinate.y - 1);
         }
-        return new Coordinate(coordinate.x + 1, coordinate.y);
     }
 
     private Bearing turnRight() {
