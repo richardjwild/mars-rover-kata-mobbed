@@ -27,7 +27,11 @@ public class Rover {
 
     private Coordinate move() {
         Coordinate coordinate = initialVector.coordinate;
-        return new Coordinate(coordinate.x, coordinate.y + 1);
+        switch (initialVector.bearing) {
+            case NORTH:
+                return new Coordinate(coordinate.x, coordinate.y + 1);
+        }
+        return new Coordinate(coordinate.x + 1, coordinate.y);
     }
 
     private Bearing turnRight() {

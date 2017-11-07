@@ -58,7 +58,8 @@ public class RoverShould {
 
     @Test
     @Parameters({
-        "1,1,NORTH | 1,2"
+        "1,1,NORTH | 1,2",
+        "1,1,EAST  | 2,1"
     })
     public void move_forwards(int x, int y, Bearing initialBearing, int expectedX, int expectedY) {
         List<Instruction> instructions = asList(MOVE);
