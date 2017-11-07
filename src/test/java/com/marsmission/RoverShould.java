@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
+import static com.marsmission.Instruction.TURN_LEFT;
 import static com.marsmission.Instruction.TURN_RIGHT;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
@@ -24,6 +25,26 @@ public class RoverShould {
     public void
     turn_right(int x, int y, Bearing initialBearing, Bearing expectedBearing) {
         List<Instruction> instructions = asList(TURN_RIGHT);
+        MarsVector initialVector = new MarsVector(
+            new Coordinate(x, y), initialBearing);
+        Rover rover = new Rover(initialVector, instructions);
+
+        assertEquals(
+            new MarsVector(new Coordinate(x, y), expectedBearing),
+            rover.execute());
+
+    }
+
+    @Test
+    @Parameters({
+        "1,1,NORTH | WEST",
+        "1,1,WEST  | SOUTH",
+        "1,1,SOUTH | EAST",
+        "1,1,EAST  | NORTH"
+    })
+    public void
+    turn_left(int x, int y, Bearing initialBearing, Bearing expectedBearing) {
+        List<Instruction> instructions = asList(TURN_LEFT);
         MarsVector initialVector = new MarsVector(
             new Coordinate(x, y), initialBearing);
         Rover rover = new Rover(initialVector, instructions);

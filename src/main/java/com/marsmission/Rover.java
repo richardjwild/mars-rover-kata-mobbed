@@ -16,6 +16,8 @@ public class Rover {
             switch (instruction) {
                 case TURN_RIGHT:
                     return new MarsVector(initialVector.coordinate, turnRight());
+                case TURN_LEFT:
+                    return new MarsVector(initialVector.coordinate, turnLeft());
                 default:
                     return null;
             }
@@ -31,6 +33,19 @@ public class Rover {
                 return Bearing.SOUTH;
             case SOUTH:
                 return Bearing.WEST;
+            default:
+                return Bearing.NORTH;
+        }
+    }
+
+    private Bearing turnLeft() {
+        switch (initialVector.bearing) {
+            case NORTH:
+                return Bearing.WEST;
+            case WEST:
+                return Bearing.SOUTH;
+            case SOUTH:
+                return Bearing.EAST;
             default:
                 return Bearing.NORTH;
         }
