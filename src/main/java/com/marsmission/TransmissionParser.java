@@ -7,7 +7,7 @@ public class TransmissionParser {
 
     public Transmission parse(String input) {
         Transmission transmission = new Transmission();
-        String[] lines = input.split("\n");
+        String[] lines = input.split("\n", -1);
 
         for (int i = 1; i < lines.length; i += 2) {
             Coordinate coordinate = parseCordinates(lines, i);
@@ -30,8 +30,6 @@ public class TransmissionParser {
 
     private List<Instruction> parseInstruction(String[] lines, int roverInputLine) {
         List<Instruction> instructions = new ArrayList<>();
-        if (roverInputLine + 1 >= lines.length)
-            return instructions;
         for (char instruction : lines[roverInputLine + 1].toCharArray()) {
             instructions.add(Instruction.fromText(instruction));
         }
