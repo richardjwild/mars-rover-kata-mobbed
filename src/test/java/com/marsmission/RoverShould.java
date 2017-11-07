@@ -60,7 +60,8 @@ public class RoverShould {
     @Parameters({
         "1,1,NORTH | 1,2",
         "1,1,EAST  | 2,1",
-        "1,2,SOUTH | 1,1"
+        "1,2,SOUTH | 1,1",
+        "2,1,WEST  | 1,1"
     })
     public void move_forwards(int x, int y, Bearing initialBearing, int expectedX, int expectedY) {
         List<Instruction> instructions = asList(MOVE);

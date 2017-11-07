@@ -32,8 +32,10 @@ public class Rover {
                 return new Coordinate(coordinate.x, coordinate.y + 1);
             case EAST:
                 return new Coordinate(coordinate.x + 1, coordinate.y);
-            default:
+            case SOUTH:
                 return new Coordinate(coordinate.x, coordinate.y - 1);
+            default:
+                return new Coordinate(coordinate.x -1 , coordinate.y);
         }
     }
 
