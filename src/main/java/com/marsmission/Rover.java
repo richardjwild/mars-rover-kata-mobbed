@@ -19,10 +19,15 @@ public class Rover {
                 case TURN_LEFT:
                     return new MarsVector(initialVector.coordinate, turnLeft());
                 default:
-                    return null;
+                    return new MarsVector(move(), initialVector.bearing);
             }
         }
         return null;
+    }
+
+    private Coordinate move() {
+        Coordinate coordinate = initialVector.coordinate;
+        return new Coordinate(coordinate.x, coordinate.y + 1);
     }
 
     private Bearing turnRight() {

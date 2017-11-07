@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
+import static com.marsmission.Instruction.MOVE;
 import static com.marsmission.Instruction.TURN_LEFT;
 import static com.marsmission.Instruction.TURN_RIGHT;
 import static java.util.Arrays.asList;
@@ -53,5 +54,20 @@ public class RoverShould {
             new MarsVector(new Coordinate(x, y), expectedBearing),
             rover.execute());
 
+    }
+
+    @Test
+    @Parameters({
+        "1,1,NORTH | 1,2"
+    })
+    public void move_forwards(int x, int y, Bearing initialBearing, int expectedX, int expectedY) {
+        List<Instruction> instructions = asList(MOVE);
+        MarsVector initialVector = new MarsVector(
+            new Coordinate(x, y), initialBearing);
+        Rover rover = new Rover(initialVector, instructions);
+
+        assertEquals(
+            new MarsVector(new Coordinate(expectedX, expectedY), initialBearing),
+            rover.execute());
     }
 }
